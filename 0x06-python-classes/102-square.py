@@ -17,7 +17,7 @@ class Square:
         return self.__size ** 2
 
     def __eq__(self, other):
-        """area method return are of square"""
+        """area me thod return are of square"""
         if (isinstance(other, Square)):
             return self.area() == other.area()
 
