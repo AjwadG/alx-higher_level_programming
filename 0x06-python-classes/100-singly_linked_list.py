@@ -34,12 +34,17 @@ class Node:
 
 
 class SinglyLinkedList:
+    """Represents a Square, with a name."""
     __head = None
 
     def __init__(self):
+        """sets the value of position"""
         pass
 
     def __str__(self):
+        """sets the value of position"""
+        if self.__head is None:
+            return ''
         tmp = self.__head
         string = ''
         while tmp.next_node is not None:
@@ -48,13 +53,12 @@ class SinglyLinkedList:
         return string + str(tmp.data)
 
     def sorted_insert(self, value):
-        self.__head = Node(value, self.__head)
-        return
+        """sets the value of position"""
+        if (self.__head is None or self.__head.data >= value):
+            self.__head = Node(value, self.__head)
+            return
 
         tmp = self.__head
-        while tmp.next_node is not None:
-            if tmp.data >= value:
-                break
+        while tmp.next_node is not None and tmp.next_node.data < value:
             tmp = tmp.next_node
-        if tmp.data == self.__head.data:
-            self.__head = Node(value, self.__head)
+        tmp.next_node = Node(value, tmp.next_node)
