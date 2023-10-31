@@ -1,0 +1,129 @@
+Import module:
+    >>> text_indentation = __import__('5-text_indentation').text_indentation
+
+Test one arg:
+    >>> text_indentation("hi water")
+    hi water
+
+Test string with spaces end:
+    >>> text_indentation("hi     ")
+    hi
+
+Test string with spaces start:
+    >>> text_indentation("        water")
+    water
+    
+Test string with spaces start and end:
+    >>> text_indentation("        water          ")
+    water
+    
+Test arg1 is empty:
+    >>> text_indentation("")
+
+Test arg1 only psaces:
+    >>> text_indentation("      ")
+
+Test test with one .:
+    >>> text_indentation("hi. water")
+    hi.
+    <BLANKLINE>
+    water
+
+Test only sapces and seprators:
+    >>> text_indentation("  ?  :  .  ")
+    ?
+    <BLANKLINE>
+    :
+    <BLANKLINE>
+    .
+    <BLANKLINE>
+
+Test only newline:
+    >>> text_indentation("\n")
+    <BLANKLINE>
+
+Test tow nelines:
+    >>> text_indentation("\n\n")
+    <BLANKLINE>
+    <BLANKLINE>
+
+Test text with 2 newlines:
+    >>> text_indentation("hi\n\n")
+    hi
+    <BLANKLINE>
+
+Test text sprated with all seprators:
+    >>> text_indentation("hi: myname? is. water")
+    hi:
+    <BLANKLINE>
+    myname?
+    <BLANKLINE>
+    is.
+    <BLANKLINE>
+    water
+
+Test comblex text spaces and seprators:
+    >>> text_indentation("hi  ?  water  .  is:  good")
+    hi?
+    <BLANKLINE>
+    water.
+    <BLANKLINE>
+    is:
+    <BLANKLINE>
+    good
+
+Test comblex text spaces and seprators and sapces end:
+    >>> text_indentation("hi  ?  water  .  is:  good   ")
+    hi?
+    <BLANKLINE>
+    water.
+    <BLANKLINE>
+    is:
+    <BLANKLINE>
+    good
+
+Test seprators only:
+    >>> text_indentation(".?:")
+    .
+    <BLANKLINE>
+    ?
+    <BLANKLINE>
+    :
+    <BLANKLINE>
+
+Test seprator with spaces:
+    >>> text_indentation("     :   ")
+    :
+    <BLANKLINE>
+
+Test sep start end
+    >>> text_indentation("?hi.")
+    ?
+    <BLANKLINE>
+    hi.
+    <BLANKLINE>
+
+Test seprators and new lines:
+    >>> text_indentation("?\n\n.\n\n:")
+    ?
+    <BLANKLINE>
+    <BLANKLINE>
+    <BLANKLINE>
+    .
+    <BLANKLINE>
+    <BLANKLINE>
+    <BLANKLINE>
+    :
+    <BLANKLINE>
+
+Test arg1 = None:
+    >>> text_indentation(None)
+    Traceback (most recent call last):
+    ...
+    TypeError: text must be a string
+
+Test arg1 not string:
+    >>> text_indentation(5)
+    Traceback (most recent call last):
+    ...
+    TypeError: text must be a string
