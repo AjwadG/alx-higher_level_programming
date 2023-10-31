@@ -1,0 +1,112 @@
+Import function from module:
+
+    >>> add_integer = __import__('0-add_integer').add_integer
+
+Test one int = 7 the other def:
+
+    >>> add_integer(7)
+    105
+
+Test one int = 0 and check default second:
+
+    >>> add_integer(0)
+    98
+
+Test both = 0:
+
+    >>> add_integer(0, 0)
+    0
+
+Test arg one is float:
+
+    >>> add_integer(7.7)
+    105
+
+Test first is negtaive float:
+
+    >>> add_integer(-1.1)
+    97
+
+Test both args are ints small:
+
+    >>> add_integer(5, 5)
+    10
+
+Test two big integers:
+
+    >>> add_integer(10000000000, 10000000000)
+    20000000000
+
+Test one neg one pos ints:
+
+    >>> add_integer(5, -5)
+    0
+
+Test one neg one pos ints:
+
+    >>> add_integer(-20000, 10000)
+    -10000
+
+Test int and float:
+
+    >>> add_integer(5, 5.55)
+    10
+
+Test float and int:
+
+    >>> add_integer(5.55, 5)
+    10
+
+Test two floats:
+
+    >>> add_integer(0.5, 0.5)
+    0
+
+Add infinity:
+
+    >>> add_integer(float('inf'), float('-inf'))
+    Traceback (most recent call last):
+    ...
+    OverflowError: cannot convert float infinity to integer
+
+Test both args invalid:
+
+    >>> add_integer(None, None)
+    Traceback (most recent call last):
+        ...
+    TypeError: a must be an integer
+
+Add nan:
+
+    >>> add_integer(0, float('nan'))
+    Traceback (most recent call last):
+    ...
+    ValueError: cannot convert float NaN to integer
+
+Test two strings:
+
+    >>> add_integer("hi", "mate")
+    Traceback (most recent call last):
+        ...
+    TypeError: a must be an integer
+
+Test first arg string:
+
+    >>> add_integer("hi", 0)
+    Traceback (most recent call last):
+        ...
+    TypeError: a must be an integer
+
+Test second arg list:
+
+    >>> add_integer(55555, [])
+    Traceback (most recent call last):
+        ...
+    TypeError: b must be an integer
+
+Test float overflow:
+    >>> add_integer(float('inf'), 0)
+    Traceback (most recent call last):
+    ...
+    OverflowError: cannot convert float infinity to integer
+    
