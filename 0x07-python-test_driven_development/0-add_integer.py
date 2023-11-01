@@ -1,5 +1,9 @@
 #!/usr/bin/python3
-"""add_integer module"""
+"""
+    add_integer module
+    using module doctest
+    to check cases
+"""
 
 
 def add_integer(a, b=98):

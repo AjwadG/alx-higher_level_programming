@@ -1,5 +1,9 @@
 #!/usr/bin/python3
-"""text_indentation module"""
+"""
+    text_indentation module
+    using module doctest
+    to check cases
+"""
 
 
 def text_indentation(text):

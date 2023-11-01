@@ -1,5 +1,9 @@
 #!/usr/bin/python3
-"""matrix_divided moudle"""
+"""
+    matrix_divided moudle
+    using module doctest
+    to check cases
+"""
 
 
 def matrix_divided(matrix, div):

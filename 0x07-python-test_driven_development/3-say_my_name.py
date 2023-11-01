@@ -1,5 +1,9 @@
 #!/usr/bin/python3
-"""say_my_name module"""
+"""
+    say_my_name module
+    using module doctest
+    to check cases
+"""
 
 
 def say_my_name(first_name, last_name=""):

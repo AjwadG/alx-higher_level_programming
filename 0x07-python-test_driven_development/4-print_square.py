@@ -1,5 +1,9 @@
 #!/usr/bin/python3
-"""print_square module"""
+"""
+    print_square module
+    using module doctest
+    to check cases
+"""
 
 
 def print_square(size):
