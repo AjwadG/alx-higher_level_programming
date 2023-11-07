@@ -1,0 +1,8 @@
+push
+fix
+*main.c
+a.out
+*main.py
+*.so
+__pycache__
+*.txt
