@@ -78,3 +78,12 @@ class Rectangle(Base):
         """prints shape out of #'s"""
         for i in range(self.__height):
             print('#' * self.__width)
+
+    def __str__(self):
+        """returns formated string of the obj"""
+        id = self.id
+        wi = self.__width
+        he = self.__height
+        x = self.__x
+        y = self.__y
+        return "[Rectangle] ({}) {}/{} - {}/{}".format(id, x, y, wi, he)
