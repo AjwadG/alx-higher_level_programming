@@ -1,0 +1,11 @@
+#!/bin/bash
+
+# Add all changes
+git add .
+
+# Amend commit with old message
+git commit --amend --no-edit
+
+# Force push changes to remote repository
+git push -f
+
