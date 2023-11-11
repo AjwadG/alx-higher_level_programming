@@ -91,8 +91,8 @@ class Rectangle(Base):
 
     def update(self, *args, **kwargs):
         """updates obj attrs"""
-        a = len(args)
-        if a is not 0:
+        if args is not None and len(args) != 0:
+            a = len(args)
             if a >= 1:
                 self.id = args[0]
             if a >= 2:
