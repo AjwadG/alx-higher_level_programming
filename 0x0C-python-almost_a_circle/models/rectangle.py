@@ -83,10 +83,10 @@ class Rectangle(Base):
     def __str__(self):
         """returns formated string of the obj"""
         id = self.id
-        wi = self.__width
-        he = self.__height
-        x = self.__x
-        y = self.__y
+        wi = self.width
+        he = self.height
+        x = self.x
+        y = self.y
         return "[Rectangle] ({}) {}/{} - {}/{}".format(id, x, y, wi, he)
 
     def update(self, *args, **kwargs):
