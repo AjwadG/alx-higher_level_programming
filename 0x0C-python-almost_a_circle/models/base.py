@@ -41,3 +41,14 @@ class Base:
         if a is None or type(a) is not str or len(a) == 0:
             return "[]"
         return json.loads(json_string)
+
+    @classmethod
+    def create(cls, **dictionary):
+        """"dict to file"""
+        name = cls.__name__
+        if name == "Rectangle":
+            tmp = cls(1, 1, 1, 1)
+        else:
+            tmp = cls(1, 1, 1)
+        tmp.update(**dictionary)
+        return tmp
