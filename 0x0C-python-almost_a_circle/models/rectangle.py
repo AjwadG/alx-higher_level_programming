@@ -119,4 +119,4 @@ class Rectangle(Base):
         """returns the object as a dict"""
         return {"id": self.id, "width": self.width,
                 "height": self.height, "x": self.x,
-                 "y": self.y}
+                "y": self.y}

@@ -29,9 +29,15 @@ class Base:
         name = cls.__name__
         ls = []
         if list_objs is not None:
-             for a in list_objs:
+            for a in list_objs:
                 ls.append(a.to_dictionary())
         with open(name + ".json", "w+", encoding="utf-8") as file:
             file.write(Base.to_json_string(ls))
 
-
+    @staticmethod
+    def from_json_string(json_string):
+        """"dict to json"""
+        a = json_string
+        if a is None or type(a) is not str or len(a) == 0:
+            return "[]"
+        return json.loads(json_string)

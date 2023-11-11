@@ -28,7 +28,7 @@ class Square(Rectangle):
         x = self.x
         y = self.y
         return "[Square] ({}) {}/{} - {}".format(id, x, y, size)
-    
+
     def update(self, *args, **kwargs):
         """updates obj attrs"""
         if args is not None and len(args) != 0:
