@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """base class module"""
 import json
+from os.path import exists
 
 
 class Base:
@@ -44,11 +45,26 @@ class Base:
 
     @classmethod
     def create(cls, **dictionary):
-        """"dict to file"""
+        """"crates new obj"""
         name = cls.__name__
         if name == "Rectangle":
             tmp = cls(1, 1, 1, 1)
-        else:
+        elif name == "Square":
             tmp = cls(1, 1, 1)
+        else:
+            return None
         tmp.update(**dictionary)
         return tmp
+
+    @classmethod
+    def load_from_file(cls):
+        """"crates new obj from avlues in file"""
+        name = cls.__name__ + ".json"
+        if not exists(name):
+            return
+        with open(name, "r+", encoding="utf-8") as file:
+            tmp = cls.from_json_string(file.read())
+        ls = []
+        for a in tmp:
+            ls.append(cls.create(**a))
+        return ls
