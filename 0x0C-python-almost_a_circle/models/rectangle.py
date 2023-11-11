@@ -89,15 +89,28 @@ class Rectangle(Base):
         y = self.__y
         return "[Rectangle] ({}) {}/{} - {}/{}".format(id, x, y, wi, he)
 
-    def update(self, id=None, width=None, height=None, x=None, y=None):
+    def update(self, *args, **kwargs):
         """updates obj attrs"""
-        if id is not None:
-            self.id = id
-        if width is not None:
-            self.width = width
-        if height is not None:
-            self.height = height
-        if x is not None:
-            self.x = x
-        if y is not None:
-            self.y = y
+        a = len(args)
+        if a is not 0:
+            if a >= 1:
+                self.id = args[0]
+            if a >= 2:
+                self.width = args[1]
+            if a >= 3:
+                self.height = args[2]
+            if a >= 4:
+                self.x = args[3]
+            if a >= 5:
+                self.y = args[4]
+        else:
+            if "id" in kwargs:
+                self.id = kwargs["id"]
+            if "width" in kwargs:
+                self.width = kwargs["width"]
+            if "height" in kwargs:
+                self.height = kwargs["height"]
+            if "x" in kwargs:
+                self.x = kwargs["x"]
+            if "y" in kwargs:
+                self.y = kwargs["y"]
