@@ -68,3 +68,27 @@ class Base:
         for a in tmp:
             ls.append(cls.create(**a))
         return ls
+
+    @classmethod
+    def save_to_file_csv(cls, list_objs):
+        """"dict to file"""
+        name = cls.__name__
+        ls = []
+        if list_objs is not None:
+            for a in list_objs:
+                ls.append(a.to_dictionary())
+        with open(name + ".csv", "w+", encoding="utf-8") as file:
+            file.write(Base.to_json_string(ls))
+
+    @classmethod
+    def load_from_file_csv(cls):
+        """"crates new obj from avlues in file"""
+        name = cls.__name__ + ".csv"
+        if not exists(name):
+            return
+        with open(name, "r+", encoding="utf-8") as file:
+            tmp = cls.from_json_string(file.read())
+        ls = []
+        for a in tmp:
+            ls.append(cls.create(**a))
+        return ls
