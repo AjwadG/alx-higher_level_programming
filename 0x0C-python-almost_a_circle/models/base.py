@@ -2,6 +2,10 @@
 """base class module"""
 import json
 from os.path import exists
+import csv
+import turtle
+import time
+from random import random
 
 
 class Base:
@@ -75,20 +79,54 @@ class Base:
         name = cls.__name__
         ls = []
         if list_objs is not None:
-            for a in list_objs:
-                ls.append(a.to_dictionary())
-        with open(name + ".csv", "w+", encoding="utf-8") as file:
-            file.write(Base.to_json_string(ls))
+            if name == "Rectangle":
+                for a in list_objs:
+                    ls.append([a.id, a.width, a.height, a.x, a.y])
+            else:
+                for a in list_objs:
+                    ls.append([a.id, a.size, a.x, a.y])
+        with open(name + ".csv", "w+", encoding="utf-8", newline='') as file:
+            writer = csv.writer(file)
+            writer.writerows(ls)
 
     @classmethod
     def load_from_file_csv(cls):
         """"crates new obj from avlues in file"""
-        name = cls.__name__ + ".csv"
-        if not exists(name):
-            return
-        with open(name, "r+", encoding="utf-8") as file:
-            tmp = cls.from_json_string(file.read())
-        ls = []
-        for a in tmp:
-            ls.append(cls.create(**a))
+        name = cls.__name__
+        if not exists(name + ".csv"):
+            return []
+        with open(name + ".csv", "r+", encoding="utf-8", newline='') as file:
+            tmp = csv.reader(file)
+            ls = []
+            for a in tmp:
+                a = [int(i) for i in a]
+                if name == "Rectangle":
+                    dic = {"id": a[0], "width": a[1], "height": a[2],
+                           "x": a[3], "y": a[4]}
+                elif name == "Square":
+                    dic = {"id": a[0], "size": a[1], "x": a[2], "y": a[3]}
+                else:
+                    return []
+                ls.append(cls.create(**dic))
         return ls
+
+    @staticmethod
+    def draw(list_rectangles, list_squares):
+        shapes = list_rectangles + list_squares
+        for a in shapes:
+            draw = turtle.Turtle()
+            draw.color(random(), random(), random())
+            draw.setpos(-a.x, -a.y)
+            draw.pensize(7)
+            draw.pendown()
+            draw.forward(a.width)
+            draw.right(90)
+            draw.forward(a.height)
+            draw.right(90)
+            draw.forward(a.width)
+            draw.right(90)
+            draw.forward(a.height)
+            draw.right(90)
+            draw.end_fill()
+
+        time.sleep(10)
