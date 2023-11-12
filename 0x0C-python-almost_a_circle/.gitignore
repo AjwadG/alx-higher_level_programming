@@ -4,4 +4,7 @@ fix
 a.out
 *main.py
 *.so
-__pycache__
+*/__pycache__
+*.json
+*.csv
+*.txt

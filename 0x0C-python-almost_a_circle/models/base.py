@@ -44,7 +44,7 @@ class Base:
         """"dict to json"""
         a = json_string
         if a is None or type(a) is not str or len(a) == 0:
-            return "[]"
+            return []
         return json.loads(json_string)
 
     @classmethod
@@ -52,11 +52,11 @@ class Base:
         """"crates new obj"""
         name = cls.__name__
         if name == "Rectangle":
-            tmp = cls(1, 1, 1, 1)
+            tmp = cls(1, 1)
         elif name == "Square":
-            tmp = cls(1, 1, 1)
+            tmp = cls(1)
         else:
-            return None
+            tmp = None
         tmp.update(**dictionary)
         return tmp
 
@@ -65,7 +65,7 @@ class Base:
         """"crates new obj from avlues in file"""
         name = cls.__name__ + ".json"
         if not exists(name):
-            return
+            return []
         with open(name, "r+", encoding="utf-8") as file:
             tmp = cls.from_json_string(file.read())
         ls = []
