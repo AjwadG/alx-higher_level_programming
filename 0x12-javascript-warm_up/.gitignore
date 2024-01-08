@@ -2,7 +2,7 @@ push
 fix
 *main.c
 a.out
-*main.py
+*main*
 *.so
 */__pycache__
 *.json
