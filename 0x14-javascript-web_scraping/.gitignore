@@ -1,0 +1,10 @@
+push
+fix
+*main.c
+a.out
+*main*
+*.so
+*/__pycache__
+*.json
+*.csv
+*.txt
