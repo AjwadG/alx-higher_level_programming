@@ -8,3 +8,6 @@ a.out
 *.json
 *.csv
 *.txt
+node_modules
+package.json
+package-lock.json
