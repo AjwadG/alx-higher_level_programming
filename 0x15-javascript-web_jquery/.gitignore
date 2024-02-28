@@ -1,0 +1,12 @@
+push
+fix
+a.out
+*main*
+*.so
+*/__pycache__
+*.json
+*.csv
+*.txt
+node_modules
+package.json
+package-lock.json
