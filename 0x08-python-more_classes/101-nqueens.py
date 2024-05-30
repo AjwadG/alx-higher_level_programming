@@ -1,81 +1,62 @@
 #!/usr/bin/python3
-"""challenge of placing N non-attacking queens on an N×N chessboard"""
-import sys
-
-if len(sys.argv) != 2:
-    print("Usage: nqueens N")
-    sys.exit(1)
-
-N = sys.argv[1]
-
-if not N.isnumeric():
-    print("N must be a number")
-    sys.exit(1)
-N = int(N)
-if N < 4:
-    print("N must be at least 4")
-    sys.exit(1)
+"""
+0-nqueens.py
+"""
+from sys import argv, exit
 
 
-def col(arr, index):
-    for a in range(len(arr)):
-        if arr[a][index] == 1:
+def main():
+    ''' enrty point '''
+    if len(argv) != 2:
+        print('Usage: nqueens N')
+        exit(1)
+    elif not argv[1].isnumeric():
+        print('N must be a number')
+        exit(1)
+    N = int(argv[1])
+    if N < 4:
+        print('N must be at least 4')
+        exit(1)
+    return N
+
+
+def validate(board, index, N):
+    ''' checks if the move is valid '''
+    y, x = index
+    for a in range(y - 1, -1, -1):
+        if board[a][x]:
+            return False
+        of_left = x - (y - a)
+        of_right = x + (y - a)
+        if of_left >= 0 and board[a][of_left]:
+            return False
+        if of_right < N and board[a][of_right]:
             return False
     return True
 
 
-def diag(arr, row, col):
-    col1 = col - 1
-    col2 = col + 1
-    for a in reversed(range(row)):
-        if len(arr[0]) > col2 and arr[a][col2] == 1:
-            return False
-        if col1 >= 0 and arr[a][col1] == 1:
-            return False
-        col1 -= 1
-        col2 += 1
-    return True
-
-
-def all(arr, N):
-    count = 0
-    for a in arr:
-        for b in a:
-            count += b
-    if N == count:
+def nqueens(board, index, N, boards):
+    ''' nqueens logic '''
+    y, x = index
+    if y == N:
         return True
-    else:
-        return False
+    if validate(board, index, N):
+        board[y][x] = 1
+        for i in range(N):
+            if nqueens(board, (y + 1, i), N, boards):
+                boards.append([[i, board[i].index(1)] for i in range(N)])
+                break
+
+        board[y][x] = 0
 
 
-def find(N, start):
-    arr = [[0 for i in range(N)] for j in range(N)]
+if __name__ == '__main__':
+    N = main()
+
+    board = [[0 for a in range(N)] for b in range(N)]
+    boards = []
     for i in range(N):
-        if col(arr, start[i]) and diag(arr, i, start[i]):
-            arr[i][start[i]] = 1
-    if all(arr, N):
-        lis = []
-        for a in range(N):
-            for b in range(N):
-                if arr[a][b]:
-                    lis.append([a, b])
-        print(lis)
-
-
-def combinations(digits, length, prev=[]):
-    """gets all combs"""
-    if length == 0:
-        return [prev]
-    combs = []
-    for i in range(len(digits)):
-        if digits[i] not in prev:
-            prev_extended = prev + [digits[i]]
-            combs += combinations(digits, length-1, prev_extended)
-    return combs
-
-
-digits = [i for i in range(N)]
-cases = combinations(digits, N)
-
-for a in cases:
-    find(N, a)
+        value = nqueens(board, (0, i), N, boards)
+        board[0][i] = 0
+    for board in boards:
+        print(board)
